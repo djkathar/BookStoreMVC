@@ -16,6 +16,7 @@ namespace BookStore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,16 +26,47 @@ namespace BookStore
             {
                 app.UseDeveloperExceptionPage();
             }
+               
+
+            //app.Use(async (context, next) => {
+            //    await context.Response.WriteAsync("Hello from middleware-1-Request||");
+            //    await next();
+            //    await context.Response.WriteAsync("Hello from middleware-1-Response||");
+            //});
+
+            //app.Use(async (context, next) => {
+            //    await context.Response.WriteAsync("Hello from middleware-2-Request||");
+            //    await next();
+            //    await context.Response.WriteAsync("Hello from middleware-2-Response||");
+
+            //});
+
+            //app.Use(async (context, next) => {
+            //    await context.Response.WriteAsync("Hello from middleware-3-Request||");
+            //    await next();
+            //});
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World from my MVC app!");
-                });
+            app.UseEndpoints(endpoint => {
+                endpoint.MapDefaultControllerRoute();
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello World from my MVC app!");
+            //    });
+            //});
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/dj", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello DJ from my MVC app!");
+            //    });
+            //});
         }
     }
 }
