@@ -8,10 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    
     public class BookController : Controller
     {
         private readonly BookRepository _bookRepository = null;
 
+        [ViewData]
+        public string Title { get; set; }
         public BookController()
         {
             _bookRepository = new BookRepository();
@@ -20,17 +23,35 @@ namespace BookStore.Controllers
         public ViewResult GetAllBooks()
         {
             var data= _bookRepository.GetAllBooks();
+            return View(data);
+        }
+
+        public ViewResult GetBook(int Id, string NameOfBook)
+        {            
+            var data= _bookRepository.GetBookById(Id);
+            return View(data);
+        }
+
+        [Route("search-book/{Title}",Name ="searchbookroute")]
+        public List<BookModel> SearchBook(string bookTitle)
+        {
+            Title = "Search book";
+            string Author = "Dj";
+            return _bookRepository.SearchBook(bookTitle, Author);
+
+        }
+
+        public ViewResult AddBook()
+        {
+            Title = "Add New Book";
             return View();
         }
 
-        public BookModel GetBook(int Id)
+        [HttpPost]
+        public ViewResult AddBook(BookModel newBook)
         {
-            return _bookRepository.GetBookById(Id);
-        }
-
-        public List<BookModel> SearchBook(string Title, string Author)
-        {
-            return _bookRepository.SearchBook(Title, Author);
+            
+            return View();
         }
     }
 }

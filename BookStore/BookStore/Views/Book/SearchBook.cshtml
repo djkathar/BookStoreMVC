@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "SearchBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section breadcrums {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Book" asp-action="GetAllBooks">Book</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search Books</li>
+        </ol>
+    </nav>
+}
+    <h1>SearchBook</h1>
+

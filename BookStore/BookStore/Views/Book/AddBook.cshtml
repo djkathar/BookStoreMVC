@@ -1,0 +1,45 @@
+﻿@model BookModel;
+<div class="container">
+    <h3 class="display-4">Add New Book</h3>
+    <form method="post" asp-controller="Book" asp-action="AddBook">
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Language"></label>
+            <input asp-for="Language" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalPages"></label>
+            <input asp-for="TotalPages" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add Book" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>
+@section breadcrums {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Book" asp-action="GetAllBooks">Book</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add New Book</li>
+        </ol>
+    </nav>
+}
+
+
